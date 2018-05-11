@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/actionHome">
+
+    <fragment
+        android:id="@+id/actionHome"
+        android:name="nl.jovmit.navigation.Home"
+        android:label="@string/titleHome"
+        tools:layout="@layout/fragment_home">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@string/titleHome" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionDashboard"
+        android:name="nl.jovmit.navigation.Dashboard"
+        android:label="@string/titleDashboard"
+        tools:layout="@layout/fragment_dashboard">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@string/titleDashboard" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionNotifications"
+        android:name="nl.jovmit.navigation.Notifications"
+        android:label="@string/titleNotifications"
+        tools:layout="@layout/fragment_notifications">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@string/titleNotifications" />
+
+    </fragment>
+
+</navigation>
