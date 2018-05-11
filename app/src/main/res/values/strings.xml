@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Navigation</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="appName">Navigation</string>
+    <string name="titleHome">Home</string>
+    <string name="titleDashboard">Dashboard</string>
+    <string name="titleNotifications">Notifications</string>
+
 </resources>
