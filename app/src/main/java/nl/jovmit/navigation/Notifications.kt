@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_notifications.*
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -21,5 +22,10 @@ class Notifications : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         notificationsFragmentLabel.text = title
+        openNotificationDetails.setOnClickListener {
+            val bundle = Bundle().also { it.putString("notificationId", "Test") }
+            val navController = view.findNavController()
+            navController.navigate(R.id.openNotificationDetails, bundle)
+        }
     }
 }

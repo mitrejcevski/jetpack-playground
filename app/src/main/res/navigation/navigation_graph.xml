@@ -38,6 +38,28 @@
             android:name="title"
             android:defaultValue="@string/titleNotifications" />
 
+        <action
+            android:id="@+id/openNotificationDetails"
+            app:destination="@id/notificationDetails"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/actionNotifications" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/notificationDetails"
+        android:name="nl.jovmit.navigation.NotificationDetails"
+        android:label="@string/notificationDetails"
+        tools:layout="@layout/fragment_notification_details">
+
+        <argument
+            android:name="notificationId"
+            android:defaultValue='""'
+            app:type="string" />
+
     </fragment>
 
 </navigation>

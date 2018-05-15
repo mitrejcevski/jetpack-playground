@@ -4,5 +4,6 @@
     <string name="titleHome">Home</string>
     <string name="titleDashboard">Dashboard</string>
     <string name="titleNotifications">Notifications</string>
+    <string name="notificationDetails">Notification Details</string>
 
 </resources>
