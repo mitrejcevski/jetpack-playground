@@ -7,23 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_notification_details.*
-import kotlin.LazyThreadSafetyMode.NONE
 
 class NotificationDetails : Fragment() {
-
-    private val notificationId by lazy(NONE) { arguments?.getString(NOTIFICATION_ID) }
-
-    companion object {
-
-        private const val NOTIFICATION_ID = "notificationId"
-
-        @JvmStatic
-        fun newInstance(notificationId: String) = NotificationDetails().apply {
-            arguments = Bundle().apply {
-                putString(NOTIFICATION_ID, notificationId)
-            }
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -33,6 +18,9 @@ class NotificationDetails : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        notificationDetailsLabel.text = notificationId
+        arguments?.let {
+            val passedArguments = NotificationDetailsArgs.fromBundle(it)
+            notificationDetailsLabel.text = passedArguments.notificationId
+        }
     }
 }

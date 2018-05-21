@@ -22,10 +22,11 @@ class Notifications : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         notificationsFragmentLabel.text = title
-        openNotificationDetails.setOnClickListener {
-            val bundle = Bundle().also { it.putString("notificationId", "Test") }
+        openNotificationDetailsButton.setOnClickListener {
+            val action = NotificationsDirections.openNotificationDetailsAction()
+            action.setNotificationId("Test")
             val navController = view.findNavController()
-            navController.navigate(R.id.openNotificationDetails, bundle)
+            navController.navigate(action)
         }
     }
 }
