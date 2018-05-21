@@ -39,7 +39,7 @@
             android:defaultValue="@string/titleNotifications" />
 
         <action
-            android:id="@+id/openNotificationDetails"
+            android:id="@+id/openNotificationDetailsAction"
             app:destination="@id/notificationDetails"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
