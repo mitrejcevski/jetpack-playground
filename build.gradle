@@ -1,20 +1,20 @@
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    ext.kotlin_version = '1.2.50'
     repositories {
-        google()
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha15'
+        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha01'
+        classpath 'android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha02'
     }
 }
 
 allprojects {
     repositories {
-        google()
         jcenter()
+        google()
     }
 }
 
