@@ -1,0 +1,173 @@
+Index: app/src/main/java/nl/jovmit/navigation/Notifications.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/nl/jovmit/navigation/Notifications.kt	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ app/src/main/java/nl/jovmit/navigation/Notifications.kt	(date 1535539443000)
+@@ -5,7 +5,7 @@
+ import android.view.View
+ import android.view.ViewGroup
+ import androidx.fragment.app.Fragment
+-import androidx.navigation.findNavController
++import androidx.navigation.Navigation
+ import kotlinx.android.synthetic.main.fragment_notifications.*
+ import kotlin.LazyThreadSafetyMode.NONE
+ 
+@@ -25,7 +25,7 @@
+         openNotificationDetailsButton.setOnClickListener {
+             val action = NotificationsDirections.openNotificationDetailsAction()
+             action.setNotificationId("Test")
+-            val navController = view.findNavController()
++            val navController = Navigation.findNavController(view)
+             navController.navigate(action)
+         }
+     }
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1534868859000)
+@@ -1,5 +1,6 @@
++#Tue Aug 21 12:27:39 EDT 2018
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.6-all.zip
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-4.9-all.zip
+Index: app/src/main/res/navigation/navigation_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/navigation/navigation_graph.xml	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ app/src/main/res/navigation/navigation_graph.xml	(date 1534871166000)
+@@ -58,7 +58,7 @@
+         <argument
+             android:name="notificationId"
+             android:defaultValue='""'
+-            app:type="string" />
++            app:argType="string" />
+ 
+     </fragment>
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ app/build.gradle	(date 1535539277000)
+@@ -25,12 +25,12 @@
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha3'
+-    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha02'
+-    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha02'
++    implementation 'androidx.appcompat:appcompat:1.0.0-rc02'
++    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha05'
++    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha05'
+ 
+-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
++    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
++    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+ 
+     testImplementation 'junit:junit:4.12'
+ }
+Index: app/src/main/java/nl/jovmit/navigation/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/nl/jovmit/navigation/MainActivity.kt	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ app/src/main/java/nl/jovmit/navigation/MainActivity.kt	(date 1534871315000)
+@@ -2,7 +2,7 @@
+ 
+ import android.os.Bundle
+ import androidx.appcompat.app.AppCompatActivity
+-import androidx.navigation.findNavController
++import androidx.navigation.Navigation
+ import androidx.navigation.ui.NavigationUI
+ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+ import kotlinx.android.synthetic.main.activity_main.*
+@@ -16,11 +16,11 @@
+     }
+ 
+     private fun setupNavigation() {
+-        val navController = findNavController(R.id.mainNavigationFragment)
++        val navController = Navigation.findNavController(this, R.id.mainNavigationFragment)
+         setupActionBarWithNavController(this, navController)
+         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+     }
+ 
+     override fun onSupportNavigateUp() =
+-            findNavController(R.id.mainNavigationFragment).navigateUp()
++            Navigation.findNavController(this, R.id.mainNavigationFragment).navigateUp()
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ app/src/main/res/layout/activity_main.xml	(date 1534871292000)
+@@ -1,8 +1,9 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout
++    android:id="@+id/container"
++    xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+-    android:id="@+id/container"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".MainActivity">
+@@ -17,7 +18,7 @@
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        app:navGraph="@navigation/navigation_graph" />
++        app:navGraph="@navigation/navigation_graph"/>
+ 
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:id="@+id/bottomNavigationView"
+@@ -27,6 +28,6 @@
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:menu="@menu/navigation" />
++        app:menu="@menu/navigation"/>
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 1bf2cabd4f0cafad9f62e640f3066b5f058f41a8)
++++ build.gradle	(date 1535539277000)
+@@ -1,13 +1,13 @@
+ buildscript {
+-    ext.kotlin_version = '1.2.50'
++    ext.kotlin_version = '1.2.61'
+     repositories {
+         jcenter()
+         google()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
++        classpath 'com.android.tools.build:gradle:3.3.0-alpha07'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+-        classpath 'android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha02'
++        classpath 'android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha05'
+     }
+ }
+ 
