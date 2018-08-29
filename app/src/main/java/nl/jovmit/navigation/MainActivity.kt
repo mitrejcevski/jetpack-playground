@@ -2,7 +2,7 @@ package nl.jovmit.navigation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        val navController = findNavController(R.id.mainNavigationFragment)
+        val navController = Navigation.findNavController(this, R.id.mainNavigationFragment)
         setupActionBarWithNavController(this, navController)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
 
     override fun onSupportNavigateUp() =
-            findNavController(R.id.mainNavigationFragment).navigateUp()
+            Navigation.findNavController(this, R.id.mainNavigationFragment).navigateUp()
 }

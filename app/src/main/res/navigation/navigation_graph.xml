@@ -58,7 +58,7 @@
         <argument
             android:name="notificationId"
             android:defaultValue='""'
-            app:type="string" />
+            app:argType="string" />
 
     </fragment>
 
