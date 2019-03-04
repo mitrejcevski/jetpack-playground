@@ -13,10 +13,10 @@ class Notifications : Fragment() {
 
     private val title by lazy(NONE) { arguments?.getString("title") ?: "" }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_notifications, container, false)
     }
 
@@ -24,7 +24,7 @@ class Notifications : Fragment() {
         notificationsFragmentLabel.text = title
         openNotificationDetailsButton.setOnClickListener {
             val action = NotificationsDirections.openNotificationDetailsAction()
-            action.setNotificationId("Test")
+            action.notificationId = "Test"
             val navController = Navigation.findNavController(view)
             navController.navigate(action)
         }

@@ -9,10 +9,10 @@ import kotlinx.android.synthetic.main.fragment_notification_details.*
 
 class NotificationDetails : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_notification_details, container, false)
     }
 
